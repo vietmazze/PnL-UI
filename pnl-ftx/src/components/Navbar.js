@@ -26,7 +26,7 @@ function Navbar() {
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           sashimi
-          <i class="fas fa-dragon"></i>
+          <i className="fas fa-dragon"></i>
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? "fas fa-times" : "fas fa-bars"} />
