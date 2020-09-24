@@ -1,58 +1,97 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./PnL.css";
-import { stoplossCal } from "../data/pnlCalculator.js";
-import { set } from "lodash";
+import * as cal from "../data/pnlCalculator";
 
 function PnL() {
-  const [entry, set_entry] = useState();
-  const [stop_loss, set_stop_loss] = useState();
-  const [take_profit, set_take_profit] = useState();
-  const [current_price, set_current] = useState();
-  const [pct_gain, set_pct_gain] = useState();
-  const [pct_loss, set_pct_loss] = useState();
-  const [amount_USD, set_amount_USD] = useState();
-  const [amount, set_amount] = useState();
-
-  const handleNumberChange = () => {};
-
-  const handle_number_change = (type, e) => {
-    var value = e.target.value;
-    if (type === "entry") {
-      set_entry(value);
-    }
-    if (type === "tp") {
-      set_take_profit(value);
-    }
-    if (type === "stoploss") {
-      set_stop_loss(value);
-    }
-    if (type === "amount") {
-      set_amount(value);
-    }
-  };
-
-  useEffect(() => {
-    set_entry(entry);
-    set_take_profit(take_profit);
-    set_stop_loss(stop_loss);
-    set_amount(amount);
+  const [userRequest, setUserRequest] = useState({
+    entry: "",
+    stopLoss: "",
+    takeProfit: "",
+    marketPrice: "",
+    percentGain: "",
+    percentLoss: "",
+    amountUSD: "",
+    amount: "",
   });
 
-  // const [categories_one, setCategoriesOne] = useState([
-  //   { name: "Entry", data: take_profit },
-  //   { name: "Take Profit", data: take_profit },
-  //   { name: "Stop Loss", data: take_profit },
+  const [userPnl, setUserPnl] = useState({
+    userGain: "",
+    userLoss: "",
+    userLiquidation: "",
+  });
 
-  //   { name: "Take Profit", data: take_profit },
-  // ]);
-  // const [categories_two, setCategoriesTwo] = useState([
-  //   { name: "Current Price", data: take_profit },
-  //   { name: "% Gain", data: take_profit },
-  //   { name: "% Loss", data: take_profit },
+  const handleNumberChange = (type, e) => {
+    var value = e.target.value;
 
-  //   { name: "Amount USD", data: take_profit },
-  // ]);
+    setUserRequest({ ...userRequest, [type]: value ? parseFloat(value) : "" });
+  };
+
+  /*
+    - PERCENT GAIN & LOSS 
+    * setState for profit and stoploss percentage when user input entry,stoploss and tp
+  */
+  useEffect(() => {
+    var curProfit;
+    var curStoploss;
+    if (userRequest.entry !== "" && userRequest.takeProfit !== "") {
+      curProfit = cal.profitCal(userRequest.entry, userRequest.takeProfit);
+    }
+
+    if (userRequest.entry !== "" && userRequest.stopLoss !== "") {
+      curStoploss = cal.stoplossCal(userRequest.entry, userRequest.stopLoss);
+    }
+
+    setUserRequest({
+      ...userRequest,
+      percentGain: curProfit ? parseFloat(curProfit) : "",
+      percentLoss: curStoploss ? parseFloat(curStoploss) : "",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userRequest.entry, userRequest.takeProfit, userRequest.stopLoss]);
+
+  /*
+    - AMOUNT IN USD
+    *setState for amount in USD when user put in amount and marketPrice
+  */
+  useEffect(() => {
+    var amount;
+    if (userRequest.amount !== "" && userRequest.marketPrice !== "") {
+      amount = cal.amountInUSD(userRequest.amount, userRequest.marketPrice);
+    }
+    setUserRequest({
+      ...userRequest,
+      amountUSD: amount ? parseFloat(amount) : "",
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userRequest.amount, userRequest.marketPrice]);
+
+  /* 
+   -GAIN AND LOSS PNL 
+   *setState for EXIT pnl and Stop PNL after percentGain and percentLoss calculated
+  */
+
+  useEffect(() => {
+    var gainPnl;
+    var stopPnl;
+    if (userRequest.amountUSD !== "" && userRequest.percentGain !== "") {
+      gainPnl = cal.gainPNL(userRequest.amountUSD, userRequest.percentGain);
+    }
+
+    if (userRequest.amountUSD !== "" && userRequest.percentLoss !== "") {
+      stopPnl = cal.stopPNL(userRequest.amountUSD, userRequest.percentLoss);
+    }
+    setUserPnl({
+      ...userPnl,
+      userGain: gainPnl ? parseFloat(gainPnl) : "",
+      userLoss: stopPnl ? parseFloat(stopPnl) : "",
+    });
+
+    console.log(userPnl.userLoss);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userRequest.amountUSD, userRequest.percentGain, userRequest.percentLoss]);
 
   return (
     <div>
@@ -74,37 +113,37 @@ function PnL() {
             <div className="pnl-items">
               <label>Entry</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={entry}
-                onChange={(e) => handle_number_change("entry", e)}
+                value={userRequest.entry}
+                onChange={(e) => handleNumberChange("entry", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>Take Profit</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={take_profit}
-                onChange={(e) => handle_number_change("tp", e)}
+                value={userRequest.takeProfit}
+                onChange={(e) => handleNumberChange("takeProfit", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>Stoploss</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={stop_loss}
-                onChange={(e) => handle_number_change("stoploss", e)}
+                value={userRequest.stopLoss}
+                onChange={(e) => handleNumberChange("stopLoss", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>Amount</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={amount}
-                onChange={(e) => handle_number_change("amount", e)}
+                value={userRequest.amount}
+                onChange={(e) => handleNumberChange("amount", e)}
               ></input>
             </div>
           </div>
@@ -121,39 +160,39 @@ function PnL() {
               </div>
             ))} */}
             <div className="pnl-items">
-              <label>Current Price</label>
+              <label>Market Price</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={current_price}
-                onChange={handleNumberChange}
+                value={userRequest.currentPrice}
+                onChange={(e) => handleNumberChange("marketPrice", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>% Gain</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={pct_gain}
-                onChange={handleNumberChange}
+                value={userRequest.percentGain}
+                onChange={(e) => handleNumberChange("percentGain", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>% Loss</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={pct_loss}
-                onChange={handleNumberChange}
+                value={userRequest.percentLoss}
+                onChange={(e) => handleNumberChange("percentLoss", e)}
               ></input>
             </div>
             <div className="pnl-items">
               <label>Amount USD</label>
               <input
-                type="text"
+                type="number"
                 className="pnlBox"
-                value={amount_USD}
-                onChange={handleNumberChange}
+                value={userRequest.amountUSD}
+                onChange={(e) => handleNumberChange("amountUSD", e)}
               ></input>
             </div>
           </div>
@@ -162,15 +201,23 @@ function PnL() {
         <div className="pnl-summary">
           <div className="pnl-items">
             <label className="pnl-items-title ">Exit PnL</label>
-            <input type="text" className="pnlBox"></input>
+            <input
+              type="number"
+              className="pnlBox"
+              value={userPnl.userGain}
+            ></input>
           </div>
           <div className="pnl-items">
             <label className="pnl-items-title ">Stop PnL</label>
-            <input type="text" className="pnlBox"></input>
+            <input
+              type="number"
+              className="pnlBox"
+              value={userPnl.userLoss}
+            ></input>
           </div>
           <div className="pnl-items">
             <label className="pnl-items-title ">Liquidation Price</label>
-            <input type="text" className="pnlBox"></input>
+            <input type="number" className="pnlBox"></input>
           </div>
         </div>
       </div>
