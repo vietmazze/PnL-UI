@@ -8,7 +8,7 @@
   width: 70vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   top: 15%;
   left: 15%;
   position: absolute;
@@ -42,14 +42,67 @@
   align-items: center;
 }
 
-.pnlBox {
+.pnl-box {
   width: 15vw;
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #1890ff;
-  outline: none;
   text-align: center;
   padding-top: 1rem;
+}
+
+.pnl-order {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-items: center;
+  box-sizing: border-box;
+  row-gap: 3rem;
+  align-items: center;
+}
+
+.pnl-order-button {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: black;
+  height: 5vh;
+  width: 100%;
+  align-items: center;
+  border: none;
+  outline: none;
+}
+
+.pnl-order-buy {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #4db872;
+  border: none;
+  background-color: black;
+  border-bottom: 0.25rem solid #4db872;
+  height: 5vh;
+  width: 100%;
+  align-items: center;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.pnl-order-sell {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ee6560;
+  border: none;
+  background-color: black;
+  border-bottom: 0.25rem solid #ee6560;
+  height: 5vh;
+  width: 100%;
+  align-items: center;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.pnl-input {
+  border: none;
+  outline: none;
 }
 
 .pnl-slider {
@@ -75,7 +128,7 @@
     width: 80vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     top: 20%;
     left: 10%;
     position: absolute;
@@ -114,7 +167,7 @@
     align-items: center;
     padding: 3px 4px;
   }
-  .pnlBox {
+  .pnl-box {
     width: 20vw;
     box-sizing: border-box;
     border: none;

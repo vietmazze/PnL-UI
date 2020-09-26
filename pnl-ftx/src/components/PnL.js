@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./PnL.css";
 import * as cal from "../data/pnlCalculator";
+import "./Button";
 
 function PnL() {
   const [userRequest, setUserRequest] = useState({
@@ -21,16 +22,35 @@ function PnL() {
     userLiquidation: "",
   });
 
+  const [orderType, setOrderType] = useState({
+    buy: true,
+    sell: false,
+  });
+
   const handleNumberChange = (type, e) => {
     var value = e.target.value;
 
     setUserRequest({ ...userRequest, [type]: value ? parseFloat(value) : "" });
   };
 
-  /*
-    - PERCENT GAIN & LOSS 
-    * setState for profit and stoploss percentage when user input entry,stoploss and tp
-  */
+  /////////////////////////////////////
+  // - ORDER CHANGE
+  // * Change the CSS styling when user click on buy/sell button
+  /////////////////////////////////////
+  const orderClick = (type, e) => {
+    if (type === "sell") {
+      setOrderType({ buy: false, sell: true });
+    } else {
+      setOrderType({ buy: true, sell: false });
+    }
+  };
+
+  let orderBuyStyle = orderType.buy ? "pnl-order-buy" : "pnl-order-button";
+  let orderSellStyle = orderType.sell ? "pnl-order-sell" : " pnl-order-button";
+  ///////////////////////////////////////
+  //  - PERCENT GAIN & LOSS
+  //  * setState for profit and stoploss percentage when user input entry,stoploss and tp
+  /////////////////////////////////////////
   useEffect(() => {
     var curProfit;
     var curStoploss;
@@ -50,10 +70,10 @@ function PnL() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRequest.entry, userRequest.takeProfit, userRequest.stopLoss]);
 
-  /*
-    - AMOUNT IN USD
-    *setState for amount in USD when user put in amount and marketPrice
-  */
+  /////////////////////////////////////
+  //  - AMOUNT IN USD
+  //  *setState for amount in USD when user put in amount and marketPrice
+  /////////////////////////////////////
   useEffect(() => {
     var amount;
     if (userRequest.amount !== "" && userRequest.marketPrice !== "") {
@@ -67,11 +87,10 @@ function PnL() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRequest.amount, userRequest.marketPrice]);
 
-  /* 
-   -GAIN AND LOSS PNL 
-   *setState for EXIT pnl and Stop PNL after percentGain and percentLoss calculated
-  */
-
+  /////////////////////////////////////////
+  // -GAIN AND LOSS PNL
+  // *setState for EXIT pnl and Stop PNL after percentGain and percentLoss calculated
+  /////////////////////////////////////////
   useEffect(() => {
     var gainPnl;
     var stopPnl;
@@ -87,9 +106,6 @@ function PnL() {
       userGain: gainPnl ? parseFloat(gainPnl) : "",
       userLoss: stopPnl ? parseFloat(stopPnl) : "",
     });
-
-    console.log(userPnl.userLoss);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRequest.amountUSD, userRequest.percentGain, userRequest.percentLoss]);
 
@@ -97,103 +113,114 @@ function PnL() {
     <div>
       <h1 className="pnl-title"> Profit and Loss Calculator</h1>
       <div className="pnl-container">
+        <div className="pnl-order">
+          <button
+            className={orderBuyStyle}
+            onClick={(e) => orderClick("buy", e)}
+            defaultValue="Buy"
+          >
+            Buy
+          </button>
+          <button
+            className={orderSellStyle}
+            onClick={(e) => orderClick("sell", e)}
+            defaultValue="Sell"
+          >
+            Sell
+          </button>
+        </div>
+
         <div className="pnl-menu">
           <div className="pnl-grid">
-            {/* {categories_one.map((data, index) => (
-              <div className="pnl-items" key={index}>
-                <label className="pnl-items-title ">{data.name}</label>
-                <input
-                  type="text"
-                  className="pnlBox"
-                  onChange={handleNumberChange}
-                  value={data.data}
-                ></input>
-              </div>
-            ))} */}
             <div className="pnl-items">
               <label>Entry</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.entry}
-                onChange={(e) => handleNumberChange("entry", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.entry}
+                  onChange={(e) => handleNumberChange("entry", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>Take Profit</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.takeProfit}
-                onChange={(e) => handleNumberChange("takeProfit", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.takeProfit}
+                  onChange={(e) => handleNumberChange("takeProfit", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>Stoploss</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.stopLoss}
-                onChange={(e) => handleNumberChange("stopLoss", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.stopLoss}
+                  onChange={(e) => handleNumberChange("stopLoss", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>Amount</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.amount}
-                onChange={(e) => handleNumberChange("amount", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.amount}
+                  onChange={(e) => handleNumberChange("amount", e)}
+                ></input>
+              </div>
             </div>
           </div>
           <div className="pnl-grid">
-            {/* {categories_two.map((data, index) => (
-              <div className="pnl-items" key={index}>
-                <label className="pnl-items-title ">{data.name}</label>
-                <input
-                  type="text"
-                  className="pnlBox"
-                  onChange={handleNumberChange}
-                  value={data.data}
-                ></input>
-              </div>
-            ))} */}
             <div className="pnl-items">
               <label>Market Price</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.currentPrice}
-                onChange={(e) => handleNumberChange("marketPrice", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.currentPrice}
+                  onChange={(e) => handleNumberChange("marketPrice", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>% Gain</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.percentGain}
-                onChange={(e) => handleNumberChange("percentGain", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  className="pnl-input"
+                  type="number"
+                  value={userRequest.percentGain}
+                  onChange={(e) => handleNumberChange("percentGain", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>% Loss</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.percentLoss}
-                onChange={(e) => handleNumberChange("percentLoss", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.percentLoss}
+                  onChange={(e) => handleNumberChange("percentLoss", e)}
+                ></input>
+              </div>
             </div>
             <div className="pnl-items">
               <label>Amount USD</label>
-              <input
-                type="number"
-                className="pnlBox"
-                value={userRequest.amountUSD}
-                onChange={(e) => handleNumberChange("amountUSD", e)}
-              ></input>
+              <div className="pnl-box">
+                <input
+                  type="number"
+                  className="pnl-input"
+                  value={userRequest.amountUSD}
+                  onChange={(e) => handleNumberChange("amountUSD", e)}
+                ></input>
+              </div>
             </div>
           </div>
         </div>
@@ -203,21 +230,21 @@ function PnL() {
             <label className="pnl-items-title ">Exit PnL</label>
             <input
               type="number"
-              className="pnlBox"
-              value={userPnl.userGain}
+              className="pnl-box"
+              defaultValue={userPnl.userGain}
             ></input>
           </div>
           <div className="pnl-items">
             <label className="pnl-items-title ">Stop PnL</label>
             <input
               type="number"
-              className="pnlBox"
-              value={userPnl.userLoss}
+              className="pnl-box"
+              defaultValue={userPnl.userLoss}
             ></input>
           </div>
           <div className="pnl-items">
             <label className="pnl-items-title ">Liquidation Price</label>
-            <input type="number" className="pnlBox"></input>
+            <input type="number" className="pnl-box"></input>
           </div>
         </div>
       </div>

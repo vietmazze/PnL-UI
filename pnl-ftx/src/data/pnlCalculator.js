@@ -11,7 +11,13 @@ export const amountInUSD = (amount, marketPrice) => {
   return round(amount * marketPrice, 4);
 };
 
-export const liquidationPrice = () => {};
+// export const liquidationPrice = () => {
+//   var positionSize = amount * marketPrice;
+//   var marginFraction = collateral / positionSize;
+//   var maintenanceMargin = maintenanceMargin;
+//   var priceLiquidated = ;
+//   return priceLiquidated;
+// };
 
 export const gainPNL = (amountUSD, percentGain) => {
   return round(amountUSD * (percentGain / 100), 3);
