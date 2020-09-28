@@ -54,6 +54,7 @@ function PnL() {
   useEffect(() => {
     var curProfit;
     var curStoploss;
+
     if (userRequest.entry !== "" && userRequest.takeProfit !== "") {
       curProfit = cal.profitCal(userRequest.entry, userRequest.takeProfit);
     }
@@ -153,6 +154,14 @@ function PnL() {
                   onChange={(e) => handleNumberChange("takeProfit", e)}
                 ></input>
               </div>
+              {orderType.buy &
+              (userRequest.takeProfit < userRequest.marketPrice) ? (
+                <p className="pnl-warning"> Should be greater than market</p>
+              ) : null}
+              {orderType.sell &
+              (userRequest.takeProfit > userRequest.marketPrice) ? (
+                <p className="pnl-warning">Should be lower than market</p>
+              ) : null}
             </div>
             <div className="pnl-items">
               <label>Stoploss</label>
@@ -164,6 +173,14 @@ function PnL() {
                   onChange={(e) => handleNumberChange("stopLoss", e)}
                 ></input>
               </div>
+              {orderType.buy &
+              (userRequest.stopLoss > userRequest.marketPrice) ? (
+                <p className="pnl-warning"> Should be lower than market</p>
+              ) : null}
+              {orderType.sell &
+              (userRequest.stopLoss < userRequest.marketPrice) ? (
+                <p className="pnl-warning">Should be greater than market</p>
+              ) : null}
             </div>
             <div className="pnl-items">
               <label>Amount</label>
