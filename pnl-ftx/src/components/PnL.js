@@ -114,154 +114,156 @@ function PnL() {
     <div>
       <h1 className="pnl-title"> Profit and Loss Calculator</h1>
       <div className="pnl-container">
-        <div className="pnl-order">
-          <button
-            className={orderBuyStyle}
-            onClick={(e) => orderClick("buy", e)}
-            defaultValue="Buy"
-          >
-            Buy
-          </button>
-          <button
-            className={orderSellStyle}
-            onClick={(e) => orderClick("sell", e)}
-            defaultValue="Sell"
-          >
-            Sell
-          </button>
-        </div>
+        <div className="pnl-body">
+          <div className="pnl-order">
+            <button
+              className={orderBuyStyle}
+              onClick={(e) => orderClick("buy", e)}
+              defaultValue="Buy"
+            >
+              Buy
+            </button>
+            <button
+              className={orderSellStyle}
+              onClick={(e) => orderClick("sell", e)}
+              defaultValue="Sell"
+            >
+              Sell
+            </button>
+          </div>
 
-        <div className="pnl-menu">
-          <div className="pnl-grid">
-            <div className="pnl-items">
-              <label>Entry</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.entry}
-                  onChange={(e) => handleNumberChange("entry", e)}
-                ></input>
+          <div className="pnl-menu">
+            <div className="pnl-grid">
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Entry</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.entry}
+                    onChange={(e) => handleNumberChange("entry", e)}
+                  ></input>
+                </div>
+              </div>
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Take Profit</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.takeProfit}
+                    onChange={(e) => handleNumberChange("takeProfit", e)}
+                  ></input>
+                </div>
+                {orderType.buy &
+                (userRequest.takeProfit < userRequest.marketPrice) ? (
+                  <p className="pnl-warning"> Should be greater than market</p>
+                ) : null}
+                {orderType.sell &
+                (userRequest.takeProfit > userRequest.marketPrice) ? (
+                  <p className="pnl-warning">Should be lower than market</p>
+                ) : null}
+              </div>
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Stoploss</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.stopLoss}
+                    onChange={(e) => handleNumberChange("stopLoss", e)}
+                  ></input>
+                </div>
+                {orderType.buy &
+                (userRequest.stopLoss > userRequest.marketPrice) ? (
+                  <p className="pnl-warning"> Should be lower than market</p>
+                ) : null}
+                {orderType.sell &
+                (userRequest.stopLoss < userRequest.marketPrice) ? (
+                  <p className="pnl-warning">Should be greater than market</p>
+                ) : null}
+              </div>
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Amount</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.amount}
+                    onChange={(e) => handleNumberChange("amount", e)}
+                  ></input>
+                </div>
               </div>
             </div>
-            <div className="pnl-items">
-              <label>Take Profit</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.takeProfit}
-                  onChange={(e) => handleNumberChange("takeProfit", e)}
-                ></input>
+            <div className="pnl-grid">
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Market Price</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.currentPrice}
+                    onChange={(e) => handleNumberChange("marketPrice", e)}
+                  ></input>
+                </div>
               </div>
-              {orderType.buy &
-              (userRequest.takeProfit < userRequest.marketPrice) ? (
-                <p className="pnl-warning"> Should be greater than market</p>
-              ) : null}
-              {orderType.sell &
-              (userRequest.takeProfit > userRequest.marketPrice) ? (
-                <p className="pnl-warning">Should be lower than market</p>
-              ) : null}
-            </div>
-            <div className="pnl-items">
-              <label>Stoploss</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.stopLoss}
-                  onChange={(e) => handleNumberChange("stopLoss", e)}
-                ></input>
+              <div className="pnl-items">
+                <label className="pnl-items-title ">% Gain</label>
+                <div className="pnl-box">
+                  <input
+                    className="pnl-input"
+                    type="number"
+                    value={userRequest.percentGain}
+                    onChange={(e) => handleNumberChange("percentGain", e)}
+                  ></input>
+                </div>
               </div>
-              {orderType.buy &
-              (userRequest.stopLoss > userRequest.marketPrice) ? (
-                <p className="pnl-warning"> Should be lower than market</p>
-              ) : null}
-              {orderType.sell &
-              (userRequest.stopLoss < userRequest.marketPrice) ? (
-                <p className="pnl-warning">Should be greater than market</p>
-              ) : null}
-            </div>
-            <div className="pnl-items">
-              <label>Amount</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.amount}
-                  onChange={(e) => handleNumberChange("amount", e)}
-                ></input>
+              <div className="pnl-items">
+                <labe className="pnl-items-title ">% Loss</labe>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.percentLoss}
+                    onChange={(e) => handleNumberChange("percentLoss", e)}
+                  ></input>
+                </div>
+              </div>
+              <div className="pnl-items">
+                <label className="pnl-items-title ">Amount USD</label>
+                <div className="pnl-box">
+                  <input
+                    type="number"
+                    className="pnl-input"
+                    value={userRequest.amountUSD}
+                    onChange={(e) => handleNumberChange("amountUSD", e)}
+                  ></input>
+                </div>
               </div>
             </div>
           </div>
-          <div className="pnl-grid">
+          <div className="pnl-slider">Slider</div>
+          <div className="pnl-summary">
             <div className="pnl-items">
-              <label>Market Price</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.currentPrice}
-                  onChange={(e) => handleNumberChange("marketPrice", e)}
-                ></input>
-              </div>
+              <label className="pnl-items-title ">Exit PnL</label>
+              <input
+                type="number"
+                className="pnl-box"
+                defaultValue={userPnl.userGain}
+              ></input>
             </div>
             <div className="pnl-items">
-              <label>% Gain</label>
-              <div className="pnl-box">
-                <input
-                  className="pnl-input"
-                  type="number"
-                  value={userRequest.percentGain}
-                  onChange={(e) => handleNumberChange("percentGain", e)}
-                ></input>
-              </div>
+              <label className="pnl-items-title ">Stop PnL</label>
+              <input
+                type="number"
+                className="pnl-box"
+                defaultValue={userPnl.userLoss}
+              ></input>
             </div>
             <div className="pnl-items">
-              <label>% Loss</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.percentLoss}
-                  onChange={(e) => handleNumberChange("percentLoss", e)}
-                ></input>
-              </div>
+              <label className="pnl-items-title ">Liquidation Price</label>
+              <input type="number" className="pnl-box"></input>
             </div>
-            <div className="pnl-items">
-              <label>Amount USD</label>
-              <div className="pnl-box">
-                <input
-                  type="number"
-                  className="pnl-input"
-                  value={userRequest.amountUSD}
-                  onChange={(e) => handleNumberChange("amountUSD", e)}
-                ></input>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="pnl-slider">Slider</div>
-        <div className="pnl-summary">
-          <div className="pnl-items">
-            <label className="pnl-items-title ">Exit PnL</label>
-            <input
-              type="number"
-              className="pnl-box"
-              defaultValue={userPnl.userGain}
-            ></input>
-          </div>
-          <div className="pnl-items">
-            <label className="pnl-items-title ">Stop PnL</label>
-            <input
-              type="number"
-              className="pnl-box"
-              defaultValue={userPnl.userLoss}
-            ></input>
-          </div>
-          <div className="pnl-items">
-            <label className="pnl-items-title ">Liquidation Price</label>
-            <input type="number" className="pnl-box"></input>
           </div>
         </div>
       </div>

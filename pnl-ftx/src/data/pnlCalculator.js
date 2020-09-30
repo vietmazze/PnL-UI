@@ -1,5 +1,5 @@
 import { round } from "lodash";
-export const stoplossCal = (entry, stoploss, orderType) => {
+export const stoplossCal = (entry, stoploss) => {
   return round((Math.abs(entry - stoploss) / entry) * 100, 2);
 };
 

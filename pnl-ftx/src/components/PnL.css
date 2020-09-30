@@ -8,50 +8,21 @@
   width: 70vw;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   top: 15%;
   left: 15%;
   position: absolute;
-  /*background-color: #424242;*/
+  background-color: #424242;
   border: 1px solid;
   box-shadow: 0px 2px 1px -1px;
   box-sizing: border-box;
 }
 
-.pnl-menu {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-items: center;
-  grid-gap: 10px;
-  box-sizing: border-box;
+.pnl-body {
+  background-color: #424242;
 }
 
-.pnl-grid {
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  justify-items: start;
-  row-gap: 3rem;
-  box-sizing: border-box;
-}
-
-.pnl-items {
-  display: flex;
-  flex-direction: column;
-  justify-self: start;
-  text-align: center;
-  align-items: left;
-}
-
-.pnl-box {
-  width: 15vw;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid #1890ff;
-  text-align: center;
-  padding-top: 1rem;
-}
-
+/*Buy - Sell button */
 .pnl-order {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -60,7 +31,7 @@
   row-gap: 3rem;
   align-items: center;
 }
-
+/*Default order type button Buy-Sell */
 .pnl-order-button {
   color: white;
   font-weight: bold;
@@ -72,7 +43,7 @@
   border: none;
   outline: none;
 }
-
+/* Buy button green when click */
 .pnl-order-buy {
   font-weight: bold;
   font-size: 1rem;
@@ -87,6 +58,7 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Sell button red when click */
 .pnl-order-sell {
   font-weight: bold;
   font-size: 1rem;
@@ -101,9 +73,51 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Grid menu middle part  */
+.pnl-menu {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-items: center;
+  grid-gap: 10px;
+  box-sizing: border-box;
+}
+
+/* Entry-Take Profit - Stoploss- Amount     */
+.pnl-grid {
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  justify-items: start;
+  row-gap: 3rem;
+  box-sizing: border-box;
+}
+
+/* label and input box    */
+.pnl-items {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  text-align: center;
+  align-items: left;
+}
+
+/* input box   */
+.pnl-box {
+  width: 15vw;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #1890ff;
+  text-align: center;
+  padding-top: 1rem;
+  background-color: #424242;
+}
+
 .pnl-input {
   border: none;
   outline: none;
+  width: 100%;
+  color: white;
+  background-color: #424242;
 }
 
 .pnl-slider {
@@ -127,6 +141,13 @@
   font-weight: bold;
 }
 
+.pnl-items-title {
+  /* font-size: 13px; */
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
 @media screen and (max-width: 960px) {
   .pnl-title {
     text-align: center;
@@ -137,7 +158,7 @@
     width: 90vw;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     top: 20%;
     left: 5%;
     position: absolute;
@@ -173,7 +194,7 @@
   .pnl-items {
     display: flex;
     flex-direction: column;
-    justify-self: start;
+    justify-self: flex-start;
     text-align: left;
     align-items: left;
     padding: 3px 4px;
@@ -187,12 +208,14 @@
     text-align: center;
     padding-top: 10px;
     padding-left: 10px;
+    background-color: #424242;
   }
 
   .pnl-items-title {
     font-size: 13px;
     font-weight: bold;
     text-align: left;
+    color: white;
   }
 
   .pnl-warning {
