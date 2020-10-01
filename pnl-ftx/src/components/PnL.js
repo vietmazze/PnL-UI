@@ -115,6 +115,7 @@ function PnL() {
       <h1 className="pnl-title"> Profit and Loss Calculator</h1>
       <div className="pnl-container">
         <div className="pnl-body">
+          {/* Top of the page: Buy/Sell Button */}
           <div className="pnl-order">
             <button
               className={orderBuyStyle}
@@ -133,6 +134,7 @@ function PnL() {
           </div>
 
           <div className="pnl-menu">
+            {/* Left side of the page: Entry/ TP / SL */}
             <div className="pnl-grid">
               <div className="pnl-items">
                 <label className="pnl-items-title ">Entry</label>
@@ -195,6 +197,7 @@ function PnL() {
                 </div>
               </div>
             </div>
+            {/* Right side of the page : Market Price/ % Gain/ % Loss */}
             <div className="pnl-grid">
               <div className="pnl-items">
                 <label className="pnl-items-title ">Market Price</label>
@@ -219,7 +222,7 @@ function PnL() {
                 </div>
               </div>
               <div className="pnl-items">
-                <labe className="pnl-items-title ">% Loss</labe>
+                <label className="pnl-items-title ">% Loss</label>
                 <div className="pnl-box">
                   <input
                     type="number"
@@ -242,7 +245,8 @@ function PnL() {
               </div>
             </div>
           </div>
-          <div className="pnl-slider">Slider</div>
+          <div className="pnl-slider"></div>
+          {/* Bottom of the page: EXIT/ STOP / LIQUIDATION */}
           <div className="pnl-summary">
             <div className="pnl-items">
               <label className="pnl-items-title ">Exit PnL</label>
