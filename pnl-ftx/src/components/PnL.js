@@ -110,6 +110,23 @@ function PnL() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRequest.amountUSD, userRequest.percentGain, userRequest.percentLoss]);
 
+  ///////////////////////////////////
+  // -SLIDER VALUE
+
+  const amountChange = (e) => {
+    setUserRequest({
+      ...userRequest,
+      amount: parseFloat(e.target.value),
+    });
+  };
+
+  // useEffect(() => {
+  //   amountChange();
+  // }, []);
+
+  window.addEventListener("pnl-slider-input", amountChange);
+  //////////////////////////////////
+
   return (
     <div>
       <h1 className="pnl-title"> Profit and Loss Calculator</h1>
@@ -245,7 +262,17 @@ function PnL() {
               </div>
             </div>
           </div>
-          <div className="pnl-slider"></div>
+          <div className="pnl-slider">
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="1"
+              defaultValue="0"
+              onChange={amountChange}
+              className="pnl-slider-input"
+            />
+          </div>
           {/* Bottom of the page: EXIT/ STOP / LIQUIDATION */}
           <div className="pnl-summary">
             <div className="pnl-items">
