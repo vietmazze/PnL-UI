@@ -110,6 +110,7 @@
   text-align: center;
   padding-top: 1rem;
   background-color: #424242;
+  color: white;
 }
 
 .pnl-input {
@@ -118,6 +119,7 @@
   width: 100%;
   color: white;
   background-color: #424242;
+  text-align: center;
 }
 
 .pnl-slider {
@@ -136,7 +138,7 @@
   background-color: #51a9fc;
 }
 
-.pnl-slider-input ::-webkit-slider-thumb {
+/* .pnl-slider-input ::-webkit-slider-thumb {
   -webkit-appearance: none;
   background-color: #e74c3c;
   width: 30px;
@@ -153,7 +155,7 @@
 
 .pnl-slider-input::-webkit-slider-thumb:active {
   transform: scale(1.6);
-}
+} */
 
 .pnl-summary {
   margin-top: 2rem;

@@ -266,8 +266,8 @@ function PnL() {
             <input
               type="range"
               min="0"
-              max="10"
-              step="1"
+              max={parseFloat(userRequest.marketPrice) > 300 ? "100" : "10000"}
+              step={parseFloat(userRequest.marketPrice) > 300 ? "0.01" : "1"}
               defaultValue="0"
               onChange={amountChange}
               className="pnl-slider-input"
