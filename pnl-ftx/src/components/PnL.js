@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "./PnL.css";
 import * as cal from "../data/pnlCalculator";
-import "./Button";
 
 function PnL() {
   const [userRequest, setUserRequest] = useState({

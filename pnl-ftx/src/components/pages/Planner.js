@@ -1,8 +1,12 @@
 import React from "react";
-import plannerBody from "../plannerComponents/plannerBody";
-import plannerPomo from "../plannerComponents/plannerPomo";
+import { PlannerBody } from "../plannerComponents/plannerBody";
+import { PlannerPomo } from "../plannerComponents/plannerPomo";
 function Planner() {
-  return <div>Test</div>;
+  return (
+    <div>
+      <PlannerBody />
+    </div>
+  );
 }
 
 export default Planner;

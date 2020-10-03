@@ -1,0 +1,40 @@
+.planner-heading {
+  text-align: center;
+  margin-top: 1rem;
+}
+.planner-container {
+  height: 95vh;
+  width: 70vw;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: gray;
+  box-sizing: border-box;
+}
+
+.planner-header {
+  grid-area: header;
+  background-color: red;
+}
+.planner-quote {
+  grid-area: quote;
+  background-color: green;
+}
+.planner-content {
+  grid-area: content;
+  background-color: blue;
+}
+.planner-note {
+  grid-area: note;
+  background-color: orange;
+}
+
+.planner-body {
+  display: grid;
+  height: 100%;
+  grid-template-rows: [header] 5% [quote] 10% [content] 55% [notes] 30%;
+  grid-template-areas:
+    "header"
+    "quote"
+    "content"
+    "note";
+}

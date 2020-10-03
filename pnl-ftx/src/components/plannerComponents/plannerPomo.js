@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-export const plannerPomo = () => {
+export const PlannerPomo = () => {
   return <div></div>;
 };
