@@ -10,10 +10,11 @@ export const PlannerBody = () => {
         <div className="planner-content">
           <div className="planner-items">
             <div className="planner-item">
+              <textarea className="planner-textarea" type="text" required />
               <label className="planner-label">First Task</label>
-              <input className="planner-input" type="text" />
             </div>
             <div className="planner-item-buttons">
+              <button className="planner-item-button">Button</button>
               <button className="planner-item-button">Button</button>
               <button className="planner-item-button">Button</button>
               <button className="planner-item-button">Button</button>
@@ -23,20 +24,41 @@ export const PlannerBody = () => {
 
           <div className="planner-items">
             <div className="planner-item">
+              <textarea className="planner-textarea" type="text" required />
               <label className="planner-label">Second Task</label>
-              <input className="planner-input" type="text" />
+            </div>
+            <div className="planner-item-buttons">
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
             </div>
           </div>
           <div className="planner-items">
             <div className="planner-item">
+              <textarea className="planner-textarea" type="text" required />
               <label className="planner-label">Third Task</label>
-              <input className="planner-input" type="text" />
+            </div>
+            <div className="planner-item-buttons">
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
             </div>
           </div>
           <div className="planner-items">
             <div className="planner-item">
+              <textarea className="planner-textarea" type="text" required />
               <label className="planner-label">Fourth Task</label>
-              <input className="planner-input" type="text" />
+            </div>
+            <div className="planner-item-buttons">
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
+              <button className="planner-item-button">Button</button>
             </div>
           </div>
         </div>
