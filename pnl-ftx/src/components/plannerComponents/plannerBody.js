@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../plannerComponents/plannerBody.css";
+import { PlannerQuote } from "../plannerComponents/plannerQuote";
 
 export const PlannerBody = () => {
   return (
     <div className="planner-container">
       <div className="planner-body">
-        <div className="planner-header">Productivity Planner</div>
-        <div className="planner-quote">quote</div>
+        <div className="planner-header">
+          <h1 className="planner-header-h1">Productivity Planner</h1>
+        </div>
+        <div className="planner-quote">
+          <PlannerQuote />
+        </div>
         <div className="planner-content">
           <div className="planner-items">
             <div className="planner-item">
@@ -62,7 +67,12 @@ export const PlannerBody = () => {
             </div>
           </div>
         </div>
-        <div className="planner-note">notes</div>
+        <div className="planner-note">
+          <textarea
+            className="planner-note-textarea"
+            placeHolder="Take Notes..."
+          ></textarea>
+        </div>
       </div>
     </div>
   );

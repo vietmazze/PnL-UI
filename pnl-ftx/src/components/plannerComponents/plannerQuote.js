@@ -1,7 +1,12 @@
 import React from "react";
+import "./plannerBody.css";
 
-const plannerQuote = () => {
-  return <div></div>;
+export const PlannerQuote = () => {
+  return (
+    <div>
+      <h2 className="planner-quote-h2">
+        "Listen to other opinions but make your own conviction"
+      </h2>
+    </div>
+  );
 };
-
-export default plannerQuote;

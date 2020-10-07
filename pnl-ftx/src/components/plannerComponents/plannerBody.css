@@ -7,18 +7,39 @@
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  background-color: gray;
+  background-color: #343434;
   box-sizing: border-box;
 }
 
 .planner-header {
   grid-area: header;
-  background-color: red;
+  text-align: center;
 }
+.planner-header-h1 {
+  color: #111;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
 .planner-quote {
   grid-area: quote;
-  background-color: green;
+  text-align: center;
 }
+.planner-quote-h2 {
+  color: #111;
+  font-family: "Lucida Sans", Arial, sans-serif;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  text-align: center;
+  line-height: 30px;
+  text-indent: 10px;
+}
+
+/* -BODY */
+/**************************************/
 .planner-content {
   display: grid;
   grid-template-rows: repeat(4, auto);
@@ -79,6 +100,7 @@
 }
 
 .planner-label {
+  padding-left: 0.5rem;
   font-size: 2rem;
   color: black;
   transform: translateY(-4rem);
@@ -96,12 +118,14 @@
   outline: none;
   height: 5rem;
   resize: none;
+  background-color: transparent;
+  border: 1px solid #d5d6d7;
   /* transition: box-shadow 0.3s ease; */
 }
 
 .planner-textarea:focus,
 .planner-textarea:hover {
-  /* box-shadow: 0px 0px 13px 0px #059403; */
+  box-shadow: 0px 0px 13px 0px #0d94ac;
   outline: none;
   border: none;
   overflow: auto;
@@ -119,13 +143,26 @@
 }
 .planner-note {
   grid-area: note;
-  background-color: orange;
+  height: 20vh;
 }
 
+.planner-note-textarea {
+  font-size: 1.3rem;
+  font-family: "Montserrat Alternates";
+  padding: 0.25em 0.5em;
+  border-radius: 10px;
+  color: black;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  background-color: transparent;
+  border: 1px solid #d5d6d7;
+}
 .planner-body {
   display: grid;
   height: 100%;
-  grid-template-rows: [header] 3% [quote] 5% [content] 75% [notes] 19%;
+  grid-template-rows: [header] 10% [quote] 10% [content] 65% [notes] 19%;
   grid-template-areas:
     "header"
     "quote"
