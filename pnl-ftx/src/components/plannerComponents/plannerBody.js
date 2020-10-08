@@ -12,60 +12,52 @@ export const PlannerBody = () => {
         <div className="planner-quote">
           <PlannerQuote />
         </div>
-        <div className="planner-content">
-          <div className="planner-items">
-            <div className="planner-item">
-              <textarea className="planner-textarea" type="text" required />
-              <label className="planner-label">First Task</label>
+        <div className="planner-split">
+          {/* -- Planner section */}
+          <div className="planner-content">
+            <div className="planner-items">
+              <div className="planner-item">
+                <textarea className="planner-textarea" type="text" required />
+                <label className="planner-label">First Task</label>
+              </div>
+              <div className="planner-item-buttons">
+                <button className="planner-item-button">Start</button>
+                <button className="planner-item-button">Button</button>
+              </div>
             </div>
-            <div className="planner-item-buttons">
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-            </div>
-          </div>
 
-          <div className="planner-items">
-            <div className="planner-item">
-              <textarea className="planner-textarea" type="text" required />
-              <label className="planner-label">Second Task</label>
+            <div className="planner-items">
+              <div className="planner-item">
+                <textarea className="planner-textarea" type="text" required />
+                <label className="planner-label">Second Task</label>
+              </div>
+              <div className="planner-item-buttons">
+                <button className="planner-item-button">Start</button>
+                <button className="planner-item-button">Session</button>
+              </div>
             </div>
-            <div className="planner-item-buttons">
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
+            <div className="planner-items">
+              <div className="planner-item">
+                <textarea className="planner-textarea" type="text" required />
+                <label className="planner-label">Third Task</label>
+              </div>
+              <div className="planner-item-buttons">
+                <button className="planner-item-button">Start</button>
+                <button className="planner-item-button">Button</button>
+              </div>
             </div>
-          </div>
-          <div className="planner-items">
-            <div className="planner-item">
-              <textarea className="planner-textarea" type="text" required />
-              <label className="planner-label">Third Task</label>
-            </div>
-            <div className="planner-item-buttons">
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-            </div>
-          </div>
-          <div className="planner-items">
-            <div className="planner-item">
-              <textarea className="planner-textarea" type="text" required />
-              <label className="planner-label">Fourth Task</label>
-            </div>
-            <div className="planner-item-buttons">
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
-              <button className="planner-item-button">Button</button>
+            <div className="planner-items">
+              <div className="planner-item">
+                <textarea className="planner-textarea" type="text" required />
+                <label className="planner-label">Fourth Task</label>
+              </div>
+              <div className="planner-item-buttons">
+                <button className="planner-item-button">Start</button>
+                <button className="planner-item-button">Button</button>
+              </div>
             </div>
           </div>
+          <div className="planner-pomodoro">Pomodoro</div>
         </div>
         <div className="planner-note">
           <textarea
