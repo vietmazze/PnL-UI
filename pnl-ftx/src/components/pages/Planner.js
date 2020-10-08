@@ -5,7 +5,7 @@ import { PlannerPomo } from "../plannerComponents/plannerPomo";
 function Planner() {
   const mystyle = {
     backgroundColor: "#c1bdba",
-    height: "90vh",
+    height: "100%",
   };
 
   return (
