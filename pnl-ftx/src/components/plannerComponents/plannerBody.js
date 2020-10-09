@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "../plannerComponents/plannerQuote";
+import Pomodoro from "./plannerPomo"
 
 export const PlannerBody = () => {
   return (
@@ -57,7 +58,7 @@ export const PlannerBody = () => {
               </div>
             </div>
           </div>
-          <div className="planner-pomodoro">Pomodoro</div>
+          <div className="planner-pomodoro"><Pomodoro/></div>
         </div>
         <div className="planner-note">
           <textarea
