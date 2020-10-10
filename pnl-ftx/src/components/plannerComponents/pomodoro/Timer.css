@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  position: absolute;
+  z-index: 2;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.counterType {
+  font-size: 1rem;
+}
+
+#time-left {
+  font-family: "Open Sans", sans-serif;
+}

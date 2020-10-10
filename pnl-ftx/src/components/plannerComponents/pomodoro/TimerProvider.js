@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-
+import "../plannerPomo.css"
 
 
 // Sending props to other components

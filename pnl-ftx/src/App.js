@@ -14,10 +14,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <TimeProvider><Route path="/pomo" exact component={Pomodoro} /></TimeProvider>
+          <Route path="/pomo" render={(props) => <TimeProvider><Pomodoro {...props}/></TimeProvider>}/>
           
           <Route path="/pnl" exact component={PnL} />
-          <TimeProvider><Route path="/planner" exact component={Planner} /></TimeProvider>
+          <Route path="/planner" render={(props) => <TimeProvider><Planner {...props}/></TimeProvider>}/>
         </Switch>
       </Router>
     </div>
