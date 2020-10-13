@@ -83,7 +83,7 @@ const Pomodoro = () => {
        <audio
                  id="beep"
                  preload="auto"
-                 src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
+                 src="https://www.soundjay.com/human/sounds/applause-4.mp3"
                  ref={beep}
              ></audio>
     </div>

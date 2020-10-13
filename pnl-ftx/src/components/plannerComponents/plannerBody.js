@@ -58,7 +58,7 @@ export const PlannerBody = () => {
               </div>
             </div>
           </div>
-          <div className="planner-pomodoro"></div>
+          <div className="planner-pomodoro"><Pomodoro/></div>
         </div>
         <div className="planner-note">
           <textarea

@@ -55,6 +55,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   box-sizing: border-box;
+  column-gap: 5rem;
 }
 
 /*-- Planner part*/
@@ -162,6 +163,7 @@
 
 .planner-note {
   grid-area: note;
+  margin-top: 2rem;
 }
 
 .planner-note-textarea {
