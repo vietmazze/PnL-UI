@@ -55,7 +55,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   box-sizing: border-box;
-  column-gap: 5rem;
+  column-gap: 2rem;
 }
 
 /*-- Planner part*/
@@ -94,9 +94,9 @@
   display: inline-block;
   text-decoration: none;
   color: #668ad8;
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
   border-radius: 50%;
   border: solid 2px #668ad8;
   text-align: center;

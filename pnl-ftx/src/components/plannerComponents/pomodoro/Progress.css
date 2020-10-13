@@ -1,10 +1,18 @@
+.progress-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  transform: translateY(1rem);
+}
 .dot {
-  height: 10px;
-  width: 10px;
+  height: 15px;
+  width: 15px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  margin: 25px 10px;
+  margin: 15px 10px;
 }
 
 .completed {

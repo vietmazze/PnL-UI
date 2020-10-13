@@ -1,7 +1,7 @@
 .pomo-container {
   height: 100%;
-  width: 350px;
-  /* background: #34394c; */
+  width: 100%;
+  background: #34394c;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -13,9 +13,16 @@
 .pomo {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  column-gap: 5px;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
+}
+
+.time-controller-split {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 5px;
 }

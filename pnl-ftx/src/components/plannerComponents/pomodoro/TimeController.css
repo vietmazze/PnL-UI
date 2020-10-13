@@ -1,8 +1,17 @@
 .TimeController {
   display: flex;
-  justify-content: space-around;
-  width: 80%;
-  padding: 1rem 0;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.TimeController-button {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1rem;
 }
 
 .wrapperDisplay {
@@ -42,4 +51,5 @@
   font-weight: bold;
   text-decoration: none;
   border: none;
+  margin-right: 4rem;
 }

@@ -1,6 +1,8 @@
 .ButtonController {
-  display: flex;
-  justify-content: space-around;
-  width: 80%;
-  margin: 1rem 0 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  column-gap: 10px;
+  width: 100%;
+  margin: 1rem 0 1rem 0;
 }

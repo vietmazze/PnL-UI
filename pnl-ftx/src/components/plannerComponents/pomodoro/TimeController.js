@@ -53,13 +53,24 @@ export function TimeController(props) {
     };
     return (
         <div className="TimeController">
-            <Button
+            <div className="TimeController-button">
+                <Button
                 actionClick={() => changeTimer('decrement')}
                 className="controlButton"
                 buttonId={`${props.type}-decrement`}
             >
                 -
             </Button>
+            <Button
+                actionClick={() => changeTimer('increment')}
+                className="controlButton"
+                buttonId={`${props.type}-increment`}
+            >
+                +
+            </Button>
+            
+            </div>
+            
             <div className="wrapperDisplay">
                 <span id={props.labelId} className="label">
                     {props.label}
@@ -68,13 +79,7 @@ export function TimeController(props) {
                     {timer[props.type] / 60}
                 </span>
             </div>
-            <Button
-                actionClick={() => changeTimer('increment')}
-                className="controlButton"
-                buttonId={`${props.type}-increment`}
-            >
-                +
-            </Button>
+            
         </div>
     );
   }

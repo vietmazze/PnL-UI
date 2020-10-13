@@ -18,8 +18,9 @@ export const Timer = (props) => {
     return(
     <div className="wrapper">
       <div className="counter">
-        <span className="counterType" id="timer-label">{props.mode}</span>
+        
         <div id="time-left">{formatTime(props.time.currentTime)}</div>
+        <span className="counterType" id="timer-label">{props.mode}</span>
       </div>
     </div>
   )

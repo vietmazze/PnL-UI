@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "../plannerComponents/plannerQuote";
 import Pomodoro from "./plannerPomo"
+import {TimeContext, TimeProvider} from "../plannerComponents/pomodoro/TimerProvider"
 
 export const PlannerBody = () => {
+  const[timer,setTimer] = useContext(TimeContext)
+  const {mode,time,name,active,progress} = timer
+
   return (
     <div className="planner-container">
       <div className="planner-body">
@@ -23,7 +27,7 @@ export const PlannerBody = () => {
               </div>
               <div className="planner-item-buttons">
                 <button className="planner-item-button">Start</button>
-                <button className="planner-item-button">Button</button>
+                <button className="planner-item-button">{progress}</button>
               </div>
             </div>
 

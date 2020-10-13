@@ -67,8 +67,15 @@ const Pomodoro = () => {
   <div className="pomo-container">
     <div className="pomo">
       <Title title={name}/>
-      <Timer mode={mode} time={time}/>
-      <Progress progress={progress}/>
+      
+      <div>    
+      <Timer mode={mode} time={time}/>  
+        <Progress progress={progress}/>
+        
+     </div>
+     <ButtonController playing={timer.active} myRef={beep}/>
+
+      <div className="time-controller-split">
       <TimeController durationId={timer.session}
                  type="session"
                  label={'Session'}
@@ -79,7 +86,9 @@ const Pomodoro = () => {
                  label={'Break'}
                  lengthId={'break-length'}
                  labelId={'break-label'}/>
-       <ButtonController playing={timer.active} myRef={beep}/>
+       
+      </div>
+     
        <audio
                  id="beep"
                  preload="auto"
