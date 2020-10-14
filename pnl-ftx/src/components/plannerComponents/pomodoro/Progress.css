@@ -4,7 +4,8 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  transform: translateY(1rem);
+  /* transform: translateY(1rem); */
+  margin-left: 2rem;
 }
 .dot {
   height: 15px;
@@ -13,6 +14,8 @@
   border-radius: 50%;
   display: inline-block;
   margin: 15px 10px;
+  outline: none;
+  cursor: pointer;
 }
 
 .completed {

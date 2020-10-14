@@ -1,13 +1,17 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "../plannerComponents/plannerQuote";
-import Pomodoro from "./plannerPomo"
-import {TimeContext, TimeProvider} from "../plannerComponents/pomodoro/TimerProvider"
-
+import Pomodoro from "./plannerPomo";
+import {
+  TimeContext,
+  TimeProvider,
+} from "../plannerComponents/pomodoro/TimerProvider";
+import { Progress } from "../plannerComponents/pomodoro/Progress";
 export const PlannerBody = () => {
-  const[timer,setTimer] = useContext(TimeContext)
-  const {mode,time,name,active,progress} = timer
-
+  const [timer, setTimer, currentProgress] = useContext(TimeContext);
+  const { progress } = timer;
+  const { currActive } = currentProgress;
+  console.log(currActive);
   return (
     <div className="planner-container">
       <div className="planner-body">
@@ -26,8 +30,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">First Task</label>
               </div>
               <div className="planner-item-buttons">
-                <button className="planner-item-button">Start</button>
-                <button className="planner-item-button">{progress}</button>
+                <Progress progress={progress} />
               </div>
             </div>
 
@@ -62,13 +65,14 @@ export const PlannerBody = () => {
               </div>
             </div>
           </div>
-          <div className="planner-pomodoro"><Pomodoro/></div>
+          <div className="planner-pomodoro">
+            <Pomodoro />
+          </div>
         </div>
         <div className="planner-note">
           <textarea
             className="planner-note-textarea"
-            placeHolder="Take Notes..."
-          ></textarea>
+            placeholder="Take Notes..."></textarea>
         </div>
       </div>
     </div>
