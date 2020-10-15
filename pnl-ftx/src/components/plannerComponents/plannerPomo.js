@@ -10,9 +10,17 @@ import { Progress } from "../plannerComponents/pomodoro/Progress";
 import { TimeController } from "../plannerComponents/pomodoro/TimeController";
 import { ButtonController } from "../plannerComponents/pomodoro/ButtonController";
 const Pomodoro = () => {
-  const [timer, setTimer] = useContext(TimeContext);
-  const { mode, time, name, active, progress } = timer;
+  const [timer, setTimer, currentProgress, setCurrentProgress] = useContext(
+    TimeContext
+  );
 
+  const { mode, time, name, active, progress } = timer;
+  const {
+    currActive,
+    currProgress1,
+    currProgress2,
+    currValue,
+  } = currentProgress;
   // create ref for the audio
   const beep = React.useRef();
 
@@ -26,7 +34,7 @@ const Pomodoro = () => {
             currentTime: timer.time.currentTime - 1,
           },
         });
-      }, 1000);
+      }, 5);
       return () => clearInterval(interval);
     } else if (timer.time.currentTime === 0) {
       beep.current.play();
@@ -51,6 +59,13 @@ const Pomodoro = () => {
           },
           mode: "session",
           progress: timer.progress + 1,
+          active: !timer.active,
+        });
+        console.log(currentProgress.currActive);
+        setCurrentProgress({
+          ...currentProgress,
+          currProgress1: currActive == 1 ? currProgress1 + 1 : currProgress1,
+          currProgress2: currActive == 2 ? currProgress2 + 1 : currProgress2,
         });
       }
       //    }, 2500);

@@ -10,8 +10,8 @@ import { Progress } from "../plannerComponents/pomodoro/Progress";
 export const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const { progress } = timer;
-  const { currActive } = currentProgress;
-  console.log(currActive);
+  const { currActive, currProgress1, currProgress2 } = currentProgress;
+
   return (
     <div className="planner-container">
       <div className="planner-body">
@@ -30,7 +30,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">First Task</label>
               </div>
               <div className="planner-item-buttons">
-                <Progress progress={progress} />
+                <Progress progress={currProgress1} />
               </div>
             </div>
 
@@ -40,8 +40,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">Second Task</label>
               </div>
               <div className="planner-item-buttons">
-                <button className="planner-item-button">Start</button>
-                <button className="planner-item-button">Session</button>
+                <Progress progress={currProgress2} />
               </div>
             </div>
             <div className="planner-items">
