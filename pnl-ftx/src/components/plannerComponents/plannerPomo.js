@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useContext } from "react";
 import "../plannerComponents/plannerPomo.css";
 import {
   TimeContext,
@@ -16,10 +16,11 @@ const Pomodoro = () => {
 
   const { mode, time, name, active, progress } = timer;
   const {
-    currActive,
+    currIndex,
     currProgress1,
     currProgress2,
-    currValue,
+    currProgress3,
+    currProgress4,
   } = currentProgress;
   // create ref for the audio
   const beep = React.useRef();
@@ -34,7 +35,7 @@ const Pomodoro = () => {
             currentTime: timer.time.currentTime - 1,
           },
         });
-      }, 5);
+      }, 1000);
       return () => clearInterval(interval);
     } else if (timer.time.currentTime === 0) {
       beep.current.play();
@@ -61,11 +62,13 @@ const Pomodoro = () => {
           progress: timer.progress + 1,
           active: !timer.active,
         });
-        console.log(currentProgress.currActive);
+
         setCurrentProgress({
           ...currentProgress,
-          currProgress1: currActive == 1 ? currProgress1 + 1 : currProgress1,
-          currProgress2: currActive == 2 ? currProgress2 + 1 : currProgress2,
+          currProgress1: currIndex === 1 ? currProgress1 + 1 : currProgress1,
+          currProgress2: currIndex === 2 ? currProgress2 + 1 : currProgress2,
+          currProgress3: currIndex === 3 ? currProgress3 + 1 : currProgress3,
+          currProgress4: currIndex === 4 ? currProgress4 + 1 : currProgress4,
         });
       }
       //    }, 2500);

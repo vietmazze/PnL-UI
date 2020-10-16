@@ -8,18 +8,17 @@ export const Progress = (props) => {
   );
 
   const { mode, time, name, active } = timer;
-  const { currActive, currProgress1, currProgress2 } = currentProgress;
+  // const { currIndex, currProgress1, currProgress2 } = currentProgress;
 
-  const setActive = (index) => {
+  const setActive = (e, index) => {
     setTimer({
       ...timer,
       active: !timer.active,
     });
     setCurrentProgress({
       ...currentProgress,
-      currActive: index,
+      currIndex: index,
     });
-    console.log(currActive);
   };
 
   // filling the array of size 5 with "true" from index 0 to progress
@@ -30,7 +29,7 @@ export const Progress = (props) => {
         <button
           key={index}
           className={`dot ${progress[index] ? "completed" : ""}`}
-          onClick={(index) => setActive(index)}></button>
+          onClick={(e) => setActive(e, props.currIndex)}></button>
       ))}
     </div>
   );

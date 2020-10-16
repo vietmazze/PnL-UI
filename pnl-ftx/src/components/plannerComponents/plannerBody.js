@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "../plannerComponents/plannerQuote";
 import Pomodoro from "./plannerPomo";
@@ -9,8 +9,13 @@ import {
 import { Progress } from "../plannerComponents/pomodoro/Progress";
 export const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
-  const { progress } = timer;
-  const { currActive, currProgress1, currProgress2 } = currentProgress;
+  const {
+    currActive,
+    currProgress1,
+    currProgress2,
+    currProgress3,
+    currProgress4,
+  } = currentProgress;
 
   return (
     <div className="planner-container">
@@ -30,7 +35,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">First Task</label>
               </div>
               <div className="planner-item-buttons">
-                <Progress progress={currProgress1} />
+                <Progress progress={currProgress1} currIndex={1} />
               </div>
             </div>
 
@@ -40,7 +45,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">Second Task</label>
               </div>
               <div className="planner-item-buttons">
-                <Progress progress={currProgress2} />
+                <Progress progress={currProgress2} currIndex={2} />
               </div>
             </div>
             <div className="planner-items">
@@ -49,8 +54,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">Third Task</label>
               </div>
               <div className="planner-item-buttons">
-                <button className="planner-item-button">Start</button>
-                <button className="planner-item-button">Button</button>
+                <Progress progress={currProgress3} currIndex={3} />
               </div>
             </div>
             <div className="planner-items">
@@ -59,8 +63,7 @@ export const PlannerBody = () => {
                 <label className="planner-label">Fourth Task</label>
               </div>
               <div className="planner-item-buttons">
-                <button className="planner-item-button">Start</button>
-                <button className="planner-item-button">Button</button>
+                <Progress progress={currProgress4} currIndex={4} />
               </div>
             </div>
           </div>
