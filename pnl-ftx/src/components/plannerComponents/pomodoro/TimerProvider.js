@@ -12,11 +12,21 @@ export const TimeProvider = (props) => {
     currProgress3: 0,
     currProgress4: 0,
   });
+  // const [timer, setTimer] = useState({
+  //   session: 1500,
+  //   break: 300,
+  //   mode: "session",
+  //   time: { currentTime: 1500, startingTime: 1500 },
+  //   active: false,
+  //   name: "Pomodoro Timer",
+  //   progress: 0,
+  // });
+
   const [timer, setTimer] = useState({
-    session: 1500,
-    break: 300,
+    session: 120,
+    break: 120,
     mode: "session",
-    time: { currentTime: 1500, startingTime: 1500 },
+    time: { currentTime: 120, startingTime: 120 },
     active: false,
     name: "Pomodoro Timer",
     progress: 0,

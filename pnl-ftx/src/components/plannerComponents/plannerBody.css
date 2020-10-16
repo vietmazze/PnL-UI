@@ -7,15 +7,16 @@
   max-width: 1500px;
   margin-right: auto;
   margin-left: auto;
-  background-color: #343434;
   box-sizing: border-box;
 }
 
 .planner-header {
   grid-area: header;
-  text-align: center;
+  display: flex;
 }
 .planner-header-h1 {
+  flex: 1;
+  align-self: center;
   color: #111;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 2.5rem;

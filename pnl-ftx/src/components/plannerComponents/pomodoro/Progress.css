@@ -8,8 +8,8 @@
   margin-left: 2rem;
 }
 .dot {
-  height: 15px;
-  width: 15px;
+  height: 2rem;
+  width: 2rem;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;

@@ -1,0 +1,9 @@
+.planner-refresh-btn {
+  align-self: flex-end;
+  cursor: pointer;
+  color: green;
+  border-radius: 200px;
+  font-family: "Source Sans Pro", sans-serif;
+  width: 3rem;
+  height: 3rem;
+}
