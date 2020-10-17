@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/components/images
+/src/services/
 # testing
 /coverage
 

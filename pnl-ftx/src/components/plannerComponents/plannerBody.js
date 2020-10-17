@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import "../plannerComponents/plannerBody.css";
-import { PlannerQuote } from "../plannerComponents/plannerQuote";
-import Pomodoro from "./plannerPomo";
-import { PlannerRefresh } from "./plannerRefresh";
-import {
-  TimeContext,
-  TimeProvider,
-} from "../plannerComponents/pomodoro/TimerProvider";
-import { Progress } from "../plannerComponents/pomodoro/Progress";
+import { PlannerQuote } from "./plannerQuote";
+import Pomodoro from "./PlannerPomo";
+import { PlannerRefresh } from "./PlannerRefresh";
+import { TimeContext, TimeProvider } from "./pomodoro/TimerProvider";
+import { Progress } from "./pomodoro/Progress";
 export const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const {
