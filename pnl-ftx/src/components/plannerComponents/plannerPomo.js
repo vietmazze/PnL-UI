@@ -6,6 +6,8 @@ import { Timer } from "./pomodoro/Timer";
 import { Progress } from "./pomodoro/Progress";
 import { TimeController } from "./pomodoro/TimeController";
 import { ButtonController } from "./pomodoro/ButtonController";
+import firebase from "../../services/firebase";
+
 const Pomodoro = () => {
   const [timer, setTimer, currentProgress, setCurrentProgress] = useContext(
     TimeContext
@@ -60,13 +62,24 @@ const Pomodoro = () => {
           active: !timer.active,
         });
 
-        setCurrentProgress({
-          ...currentProgress,
-          currProgress1: currIndex === 1 ? currProgress1 + 1 : currProgress1,
-          currProgress2: currIndex === 2 ? currProgress2 + 1 : currProgress2,
-          currProgress3: currIndex === 3 ? currProgress3 + 1 : currProgress3,
-          currProgress4: currIndex === 4 ? currProgress4 + 1 : currProgress4,
-        });
+        // setCurrentProgress({
+        //   ...currentProgress,
+        //   currProgress1: currIndex === 1 ? currProgress1 + 1 : currProgress1,
+        //   currProgress2: currIndex === 2 ? currProgress2 + 1 : currProgress2,
+        //   currProgress3: currIndex === 3 ? currProgress3 + 1 : currProgress3,
+        //   currProgress4: currIndex === 4 ? currProgress4 + 1 : currProgress4,
+        // });
+
+        firebase
+          .firestore()
+          .collection("planner")
+          .doc(currIndex)
+          .get()
+          .then((query) => {
+            const currLog = query.data().log;
+            query.ref.update({ log: currLog >= 4 ? 0 : currLog + 1 });
+            console.log("task progress updated");
+          });
       }
       //    }, 2500);
     }

@@ -28,13 +28,16 @@ const PrevPlanner = () => {
 const PlannerBody = () => {
   const planner = PrevPlanner();
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
-  const {
-    currActive,
-    currProgress1,
-    currProgress2,
-    currProgress3,
-    currProgress4,
-  } = currentProgress;
+  const onChangeProgress = (id, newProgress) => {
+    firebase
+      .firestore()
+      .collection("planner")
+      .doc(id)
+      .update({ progress: newProgress })
+      .then(function () {
+        console.log("updated progress");
+      });
+  };
 
   return (
     <div className="planner">
@@ -53,9 +56,14 @@ const PlannerBody = () => {
               {planner.map((plan) => (
                 <div className="planner-items" key={plan.id}>
                   <div className="planner-item">
-                    <textarea className="planner-textarea" type="text" required>
-                      {plan.progress}
-                    </textarea>
+                    <textarea
+                      className="planner-textarea"
+                      type="text"
+                      defaultValue={plan.progress}
+                      onChange={(e) =>
+                        onChangeProgress(plan.id, e.target.value)
+                      }
+                      required></textarea>
                     <label className="planner-label">{plan.title}</label>
                   </div>
                 </div>

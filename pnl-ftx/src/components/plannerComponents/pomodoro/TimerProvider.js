@@ -7,10 +7,6 @@ export const TimeContext = createContext();
 export const TimeProvider = (props) => {
   const [currentProgress, setCurrentProgress] = useState({
     currIndex: 1,
-    currProgress1: 0,
-    currProgress2: 0,
-    currProgress3: 0,
-    currProgress4: 0,
   });
   // const [timer, setTimer] = useState({
   //   session: 1500,
