@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import "./Progress.css";
 import { TimeContext, TimeProvider } from "./TimerProvider";
+import firebase from "../../../services/firebase";
+firebase.firestore().collection("planner").doc("1").update({
+  progress: "this is updated",
+});
 
 export const Progress = (props) => {
   const [timer, setTimer, currentProgress, setCurrentProgress] = useContext(

@@ -1,11 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "./plannerQuote";
 import Pomodoro from "./PlannerPomo";
 import { PlannerRefresh } from "./PlannerRefresh";
 import { TimeContext, TimeProvider } from "./pomodoro/TimerProvider";
 import { Progress } from "./pomodoro/Progress";
-export const PlannerBody = () => {
+import firebase from "../../services/firebase";
+
+const PrevPlanner = () => {
+  const [planner, setPlanner] = useState([]);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("planner")
+      .onSnapshot((snapshot) => {
+        const prevPlanner = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPlanner(prevPlanner);
+      });
+  }, []);
+  return planner;
+};
+
+const PlannerBody = () => {
+  const planner = PrevPlanner();
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const {
     currActive,
@@ -29,44 +50,26 @@ export const PlannerBody = () => {
           <div className="planner-split">
             {/* -- Planner section */}
             <div className="planner-content">
-              <div className="planner-items">
-                <div className="planner-item">
-                  <textarea className="planner-textarea" type="text" required />
-                  <label className="planner-label">First Task</label>
+              {planner.map((plan) => (
+                <div className="planner-items" key={plan.id}>
+                  <div className="planner-item">
+                    <textarea className="planner-textarea" type="text" required>
+                      {plan.progress}
+                    </textarea>
+                    <label className="planner-label">{plan.title}</label>
+                  </div>
                 </div>
-                <div className="planner-item-buttons">
-                  <Progress progress={currProgress1} currIndex={1} />
-                </div>
-              </div>
-
-              <div className="planner-items">
-                <div className="planner-item">
-                  <textarea className="planner-textarea" type="text" required />
-                  <label className="planner-label">Second Task</label>
-                </div>
-                <div className="planner-item-buttons">
-                  <Progress progress={currProgress2} currIndex={2} />
-                </div>
-              </div>
-              <div className="planner-items">
-                <div className="planner-item">
-                  <textarea className="planner-textarea" type="text" required />
-                  <label className="planner-label">Third Task</label>
-                </div>
-                <div className="planner-item-buttons">
-                  <Progress progress={currProgress3} currIndex={3} />
-                </div>
-              </div>
-              <div className="planner-items">
-                <div className="planner-item">
-                  <textarea className="planner-textarea" type="text" required />
-                  <label className="planner-label">Fourth Task</label>
-                </div>
-                <div className="planner-item-buttons">
-                  <Progress progress={currProgress4} currIndex={4} />
-                </div>
-              </div>
+              ))}
             </div>
+
+            <div className="planner-progress-item">
+              {planner.map((plan) => (
+                <div className="planner-item-buttons" key={plan.id}>
+                  <Progress progress={plan.log} currIndex={plan.id} />
+                </div>
+              ))}
+            </div>
+
             <div className="planner-pomodoro">
               <Pomodoro />
             </div>
@@ -81,3 +84,5 @@ export const PlannerBody = () => {
     </div>
   );
 };
+
+export default PlannerBody;
