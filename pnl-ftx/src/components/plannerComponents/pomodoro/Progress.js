@@ -11,7 +11,6 @@ export const Progress = (props) => {
     TimeContext
   );
 
-  const { mode, time, name, active } = timer;
   // const { currIndex, currProgress1, currProgress2 } = currentProgress;
 
   const setActive = (e, index) => {

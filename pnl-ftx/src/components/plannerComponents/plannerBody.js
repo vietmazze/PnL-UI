@@ -7,10 +7,35 @@ import { TimeContext, TimeProvider } from "./pomodoro/TimerProvider";
 import { Progress } from "./pomodoro/Progress";
 import firebase from "../../services/firebase";
 
-const PrevPlanner = () => {
+const PlannerBody = () => {
+  const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const [planner, setPlanner] = useState([]);
 
+  const onChangeProgress = (id, newProgress) => {
+    const test = planner;
+    const quest = test.map((item) => ({
+      id: item.id,
+      log: item.log,
+      progress: item.id == id ? newProgress : item.progress,
+      title: item.title,
+    }));
+    setPlanner(quest);
+    firebase
+      .firestore()
+      .collection("planner")
+      .doc(id)
+      .get()
+      .then((query) => {
+        query.ref.update({ progress: newProgress });
+      });
+  };
+
   useEffect(() => {
+    setPlanner(planner);
+  }, [onChangeProgress]);
+
+  useEffect(() => {
+    setPlanner([]);
     firebase
       .firestore()
       .collection("planner")
@@ -19,25 +44,10 @@ const PrevPlanner = () => {
           id: doc.id,
           ...doc.data(),
         }));
+
         setPlanner(prevPlanner);
       });
   }, []);
-  return planner;
-};
-
-const PlannerBody = () => {
-  const planner = PrevPlanner();
-  const [timer, setTimer, currentProgress] = useContext(TimeContext);
-  const onChangeProgress = (id, newProgress) => {
-    firebase
-      .firestore()
-      .collection("planner")
-      .doc(id)
-      .update({ progress: newProgress })
-      .then(function () {
-        console.log("updated progress");
-      });
-  };
 
   return (
     <div className="planner">
@@ -60,9 +70,7 @@ const PlannerBody = () => {
                       className="planner-textarea"
                       type="text"
                       defaultValue={plan.progress}
-                      onChange={(e) =>
-                        onChangeProgress(plan.id, e.target.value)
-                      }
+                      onBlur={(e) => onChangeProgress(plan.id, e.target.value)}
                       required></textarea>
                     <label className="planner-label">{plan.title}</label>
                   </div>

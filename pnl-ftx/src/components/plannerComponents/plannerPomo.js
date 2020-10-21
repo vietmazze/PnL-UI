@@ -1,26 +1,17 @@
 import React, { useContext } from "react";
 import "../plannerComponents/plannerPomo.css";
-import { TimeContext, TimeProvider } from "./pomodoro/TimerProvider";
+import { TimeContext } from "./pomodoro/TimerProvider";
 import { Title } from "./pomodoro/Title";
 import { Timer } from "./pomodoro/Timer";
-import { Progress } from "./pomodoro/Progress";
 import { TimeController } from "./pomodoro/TimeController";
 import { ButtonController } from "./pomodoro/ButtonController";
 import firebase from "../../services/firebase";
 
 const Pomodoro = () => {
-  const [timer, setTimer, currentProgress, setCurrentProgress] = useContext(
-    TimeContext
-  );
+  const [timer, setTimer, currentProgress] = useContext(TimeContext);
 
   const { mode, time, name, active, progress } = timer;
-  const {
-    currIndex,
-    currProgress1,
-    currProgress2,
-    currProgress3,
-    currProgress4,
-  } = currentProgress;
+  const { currIndex } = currentProgress;
   // create ref for the audio
   const beep = React.useRef();
 
@@ -61,14 +52,6 @@ const Pomodoro = () => {
           progress: timer.progress + 1,
           active: !timer.active,
         });
-
-        // setCurrentProgress({
-        //   ...currentProgress,
-        //   currProgress1: currIndex === 1 ? currProgress1 + 1 : currProgress1,
-        //   currProgress2: currIndex === 2 ? currProgress2 + 1 : currProgress2,
-        //   currProgress3: currIndex === 3 ? currProgress3 + 1 : currProgress3,
-        //   currProgress4: currIndex === 4 ? currProgress4 + 1 : currProgress4,
-        // });
 
         firebase
           .firestore()
