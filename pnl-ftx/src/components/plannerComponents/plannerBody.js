@@ -11,19 +11,19 @@ const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const [planner, setPlanner] = useState([]);
 
-  const onChangeProgress = (id, newProgress) => {
+  const onChangeProgress = (currentID, newProgress) => {
     const test = planner;
     const quest = test.map((item) => ({
       id: item.id,
       log: item.log,
-      progress: item.id == id ? newProgress : item.progress,
+      progress: item.id === currentID ? newProgress : item.progress,
       title: item.title,
     }));
     setPlanner(quest);
     firebase
       .firestore()
       .collection("planner")
-      .doc(id)
+      .doc(currentID.toString())
       .get()
       .then((query) => {
         query.ref.update({ progress: newProgress });
@@ -31,12 +31,7 @@ const PlannerBody = () => {
   };
 
   useEffect(() => {
-    setPlanner(planner);
-  }, [onChangeProgress]);
-
-  useEffect(() => {
-    setPlanner([]);
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection("planner")
       .onSnapshot((snapshot) => {
@@ -44,9 +39,10 @@ const PlannerBody = () => {
           id: doc.id,
           ...doc.data(),
         }));
-
         setPlanner(prevPlanner);
       });
+
+    return () => unsubscribe();
   }, []);
 
   return (
