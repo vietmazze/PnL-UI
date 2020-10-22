@@ -129,7 +129,6 @@ const PlannerBody = () => {
                 onBlur={(e) =>
                   onNoteChange(item.id, e.target.value)
                 }></textarea>
-              )
             </div>
           ))}
         </div>

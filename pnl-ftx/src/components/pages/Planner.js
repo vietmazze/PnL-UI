@@ -3,16 +3,7 @@ import PlannerBody from "../plannerComponents/PlannerBody";
 import { PlannerPomo } from "../plannerComponents/PlannerPomo";
 
 function Planner() {
-  const mystyle = {
-    backgroundColor: "#c1bdba",
-    height: "100%",
-  };
-
-  return (
-    <div style={mystyle}>
-      <PlannerBody />
-    </div>
-  );
+  return <PlannerBody />;
 }
 
 export default Planner;

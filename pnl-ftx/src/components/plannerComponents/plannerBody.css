@@ -3,7 +3,7 @@
   margin-top: 1rem;
 }
 .planner-container {
-  height: 90vh;
+  height: 95vh;
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
@@ -121,49 +121,48 @@
   background: #b3e1ff;
 }
 
-.planner-label {
-  padding-left: 0.5rem;
-  font-size: 2rem;
-  color: black;
-  transform: translateY(-4rem);
-  pointer-events: none;
-  -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
-  transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+@media only screen and (min-width: 960px) {
+  .planner-label {
+    padding-left: 0.5rem;
+    font-size: 2rem;
+    color: black;
+    transform: translateY(-4rem);
+    pointer-events: none;
+    -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+    transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+  }
+  .planner-textarea {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    font-family: "Montserrat Alternates";
+    padding: 0.25em 0.5em;
+    border-radius: 10px;
+    color: black;
+    outline: none;
+    height: 5rem;
+    resize: none;
+    background-color: transparent;
+    border: 1px solid #d5d6d7;
+    /* transition: box-shadow 0.3s ease; */
+  }
+  .planner-textarea:valid + .planner-label {
+    transform: translateY(-7rem);
+    padding: 0 10px;
+  }
+  .planner-textarea:focus + .planner-label {
+    transform: translateY(-7rem);
+    padding: 0 10px;
+  }
+  .planner-textarea:focus,
+  .planner-textarea:hover {
+    box-shadow: 0px 0px 13px 0px #0d94ac;
+    outline: none;
+    border: none;
+    overflow: auto;
+    border-style: none;
+    border-color: transparent;
+  }
 }
-.planner-textarea {
-  margin-top: 0.5rem;
-  font-size: 1.3rem;
-  font-family: "Montserrat Alternates";
-  padding: 0.25em 0.5em;
-  border-radius: 10px;
-  color: black;
-  outline: none;
-  height: 5rem;
-  resize: none;
-  background-color: transparent;
-  border: 1px solid #d5d6d7;
-  /* transition: box-shadow 0.3s ease; */
-}
-
-.planner-textarea:focus,
-.planner-textarea:hover {
-  box-shadow: 0px 0px 13px 0px #0d94ac;
-  outline: none;
-  border: none;
-  overflow: auto;
-  border-style: none;
-  border-color: transparent;
-}
-
-.planner-textarea:valid + .planner-label {
-  transform: translateY(-7rem);
-  padding: 0 10px;
-}
-.planner-textarea:focus + .planner-label {
-  transform: translateY(-7rem);
-  padding: 0 10px;
-}
-
 /*----------------------------------------*/
 
 /* --pomodoro */
@@ -192,7 +191,7 @@
 .planner-body {
   display: grid;
   height: 100%;
-  grid-template-rows: [header] 5% [quote] 5% [content] 65% [notes] 25%;
+  grid-template-rows: [header] 5% [quote] 5% [content] 65% [notes] 20%;
   grid-template-areas:
     "header"
     "quote"
@@ -206,7 +205,7 @@
 ****************************************************************************************/
 
 /*-- 960px SCREEN CSS */
-@media screen and (max-width: 960px) {
+@media only screen and (max-width: 812px) {
   .planner-heading {
     text-align: center;
     margin-top: 0.1rem;
@@ -258,14 +257,14 @@
   }
 
   /* --Split between planner and pomodoro */
-  .planner-split {
+  /* .planner-split {
     display: grid;
     grid-template-columns: 3fr 0;
     box-sizing: border-box;
-  }
+  } */
   .planner-split {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 200px 100px;
     box-sizing: border-box;
     column-gap: 2rem;
   }
@@ -334,53 +333,30 @@
 
   .planner-label {
     padding-left: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: black;
-    transform: translateY(-4rem);
+    /* transform: translateY(0.5rem); */
     pointer-events: none;
-    -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
-    transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
   }
   .planner-textarea {
     margin-top: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-family: "Montserrat Alternates";
     padding: 0.25em 0.5em;
     border-radius: 10px;
     color: black;
     outline: none;
-    height: 5rem;
+    height: 4rem;
     resize: none;
     background-color: transparent;
     border: 1px solid #d5d6d7;
     /* transition: box-shadow 0.3s ease; */
   }
 
-  .planner-textarea:focus,
-  .planner-textarea:hover {
-    box-shadow: 0px 0px 13px 0px #0d94ac;
-    outline: none;
-    border: none;
-    overflow: auto;
-    border-style: none;
-    border-color: transparent;
-  }
-
-  .planner-textarea:valid + .planner-label {
-    transform: translateY(-6rem);
-    padding: 0 10px;
-  }
-  .planner-textarea:focus + .planner-label {
-    transform: translateY(-6rem);
-    padding: 0 10px;
-  }
-
   /*----------------------------------------*/
 
   /* --pomodoro */
   .planner-pomodoro {
-    background-color: orange;
-    margin: 1rem 1rem;
     visibility: hidden;
   }
 
