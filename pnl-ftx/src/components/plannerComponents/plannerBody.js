@@ -10,23 +10,41 @@ import firebase from "../../services/firebase";
 const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const [planner, setPlanner] = useState([]);
+  const [note, setNote] = useState([]);
 
-  const onChangeProgress = (currentID, newProgress) => {
-    const test = planner;
-    const quest = test.map((item) => ({
+  const onChangeProgress = (currentId, newProgress) => {
+    const activeProgress = planner.map((item) => ({
       id: item.id,
       log: item.log,
-      progress: item.id === currentID ? newProgress : item.progress,
+      progress: item.id === currentId ? newProgress : item.progress,
       title: item.title,
     }));
-    setPlanner(quest);
+    setPlanner(activeProgress);
     firebase
       .firestore()
       .collection("planner")
-      .doc(currentID.toString())
+      .doc(currentId.toString())
       .get()
       .then((query) => {
         query.ref.update({ progress: newProgress });
+      });
+  };
+
+  const onNoteChange = (currentId, newNote) => {
+    console.log(currentId);
+
+    const activeNote = note.map((item) => ({
+      id: item.id,
+      extra: item.id === currentId ? newNote : item.extra,
+    }));
+    setNote(activeNote);
+    firebase
+      .firestore()
+      .collection("note")
+      .doc(currentId)
+      .get()
+      .then((query) => {
+        query.ref.update({ extra: newNote });
       });
   };
 
@@ -43,6 +61,22 @@ const PlannerBody = () => {
       });
 
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsub = firebase
+      .firestore()
+      .collection("note")
+      .onSnapshot((snapshot) => {
+        const activeNote = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log(activeNote);
+        setNote(activeNote);
+      });
+
+    return () => unsub();
   }, []);
 
   return (
@@ -86,11 +120,18 @@ const PlannerBody = () => {
               <Pomodoro />
             </div>
           </div>
-          <div className="planner-note">
-            <textarea
-              className="planner-note-textarea"
-              placeholder="Take Notes..."></textarea>
-          </div>
+          {note.map((item) => (
+            <div className="planner-note" key={item.id}>
+              <textarea
+                key={item.id}
+                className="planner-note-textarea"
+                defaultValue={item.extra}
+                onBlur={(e) =>
+                  onNoteChange(item.id, e.target.value)
+                }></textarea>
+              )
+            </div>
+          ))}
         </div>
       </div>
     </div>
