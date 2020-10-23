@@ -23,14 +23,27 @@
 }
 
 @media only screen and (max-width: 812px) {
+  .progress-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* transform: translateY(1rem); */
+    margin-left: 1rem;
+  }
   .dot {
     height: 20px;
     width: 20px;
     background-color: #bbb;
+    margin-left: 0rem;
+    margin: 10px 5px;
     border-radius: 50%;
     display: inline-block;
-
     outline: none;
     cursor: pointer;
+  }
+  .completed {
+    background-color: #f28458;
   }
 }

@@ -25,3 +25,34 @@
 #time-left {
   font-family: "Open Sans", sans-serif;
 }
+
+@media screen and (max-width: 812px) {
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .counter {
+    position: absolute;
+    z-index: 2;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .counterType {
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+  }
+
+  #time-left {
+    font-family: "Open Sans", sans-serif;
+  }
+}

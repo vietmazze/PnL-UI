@@ -53,3 +53,61 @@
   border: none;
   margin-right: 4rem;
 }
+
+@media screen and (max-width: 812px) {
+  .TimeController {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  .TimeController-button {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 2x;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+  }
+
+  .wrapperDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    color: #f28458;
+    font-size: 1.125;
+  }
+
+  .time {
+    display: inline-block;
+    font-size: 0.5rem;
+  }
+
+  .time::after {
+    content: " mins";
+  }
+
+  .controlButton {
+    background: #f2f4f1;
+    text-align: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+    color: #34394c;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    margin-right: 2rem;
+  }
+}

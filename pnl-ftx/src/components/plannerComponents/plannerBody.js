@@ -57,6 +57,7 @@ const PlannerBody = () => {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(prevPlanner);
         setPlanner(prevPlanner);
       });
 
