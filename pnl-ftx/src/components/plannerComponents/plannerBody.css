@@ -121,7 +121,7 @@
   background: #b3e1ff;
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 800px) {
   .planner-label {
     padding-left: 0.5rem;
     font-size: 2rem;
@@ -207,7 +207,7 @@
 ****************************************************************************************/
 
 /*-- 960px SCREEN CSS */
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 480px) {
   .planner-heading {
     text-align: center;
     margin-top: 0.1rem;
@@ -371,7 +371,7 @@
 
   .planner-note {
     grid-area: note;
-    margin-top: 1rem;
+    /* transform: translateY(3rem); */
   }
 
   .planner-note-textarea {
@@ -392,11 +392,17 @@
   .planner-body {
     display: grid;
     height: 100%;
-    grid-template-rows: [header] 5% [quote] 5% [content] 65% [notes] 25%;
+    grid-template-rows: [header] 5% [quote] 5% [content] 65% [notes] 15%;
     grid-template-areas:
       "header"
       "quote"
       "content"
       "note";
+  }
+}
+
+@media only screen and (min-width: 410px) and (max-width: 480px) {
+  .planner-note {
+    transform: translateY(3rem);
   }
 }

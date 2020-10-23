@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 812px) {
+@media screen and (max-width: 480px) {
   .Button {
     background: #f2f4f1;
     text-align: center;

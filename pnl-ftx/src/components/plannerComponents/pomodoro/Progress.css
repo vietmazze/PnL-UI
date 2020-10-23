@@ -22,7 +22,7 @@
   background-color: #f28458;
 }
 
-@media only screen and (max-width: 812px) {
+@media only screen and (max-width: 480px) {
   .progress-container {
     display: flex;
     width: 100%;
