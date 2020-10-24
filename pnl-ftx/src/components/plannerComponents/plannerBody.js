@@ -31,8 +31,6 @@ const PlannerBody = () => {
   };
 
   const onNoteChange = (currentId, newNote) => {
-    console.log(currentId);
-
     const activeNote = note.map((item) => ({
       id: item.id,
       extra: item.id === currentId ? newNote : item.extra,
@@ -57,7 +55,6 @@ const PlannerBody = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(prevPlanner);
         setPlanner(prevPlanner);
       });
 
@@ -86,7 +83,11 @@ const PlannerBody = () => {
         <div className="planner-body">
           <div className="planner-header">
             <h1 className="planner-header-h1">Productivity Planner</h1>
-            <PlannerRefresh />
+            <PlannerRefresh
+              note={note}
+              setNote={setNote}
+              setPlanner={setPlanner}
+            />
           </div>
           <div className="planner-quote">
             <PlannerQuote />
