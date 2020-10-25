@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import "../plannerComponents/plannerBody.css";
 import { PlannerQuote } from "./plannerQuote";
 import Pomodoro from "./PlannerPomo";
-import { PlannerRefresh } from "./PlannerRefresh";
 import { TimeContext, TimeProvider } from "./pomodoro/TimerProvider";
 import { Progress } from "./pomodoro/Progress";
 import firebase from "../../services/firebase";
@@ -19,7 +18,7 @@ const PlannerBody = () => {
       progress: item.id === currentId ? newProgress : item.progress,
       title: item.title,
     }));
-    setPlanner(activeProgress);
+
     firebase
       .firestore()
       .collection("planner")
@@ -35,7 +34,7 @@ const PlannerBody = () => {
       id: item.id,
       extra: item.id === currentId ? newNote : item.extra,
     }));
-    setNote(activeNote);
+
     firebase
       .firestore()
       .collection("note")
@@ -70,12 +69,39 @@ const PlannerBody = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(activeNote);
         setNote(activeNote);
       });
 
     return () => unsub();
   }, []);
+
+  async function refreshData(e) {
+    const unsub = await firebase
+      .firestore()
+      .collection("planner")
+      .get()
+      .then((query) => {
+        query.forEach((doc) => {
+          doc.ref.update({
+            log: 0,
+            progress: " ",
+            title: doc.data().title,
+          });
+        });
+      });
+    firebase
+      .firestore()
+      .collection("note")
+      .get()
+      .then((query) => {
+        query.forEach((doc) => {
+          doc.ref.update({
+            extra: " ",
+          });
+        });
+      });
+    window.location.reload();
+  }
 
   return (
     <div className="planner">
@@ -83,11 +109,14 @@ const PlannerBody = () => {
         <div className="planner-body">
           <div className="planner-header">
             <h1 className="planner-header-h1">Productivity Planner</h1>
-            <PlannerRefresh
-              note={note}
-              setNote={setNote}
-              setPlanner={setPlanner}
-            />
+            <button
+              type="submit"
+              className="planner-refresh-btn"
+              onClick={(e) => {
+                refreshData(e);
+              }}>
+              Refresh
+            </button>
           </div>
           <div className="planner-quote">
             <PlannerQuote />
