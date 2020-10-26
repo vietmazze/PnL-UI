@@ -10,6 +10,7 @@ const PlannerBody = () => {
   const [timer, setTimer, currentProgress] = useContext(TimeContext);
   const [planner, setPlanner] = useState([]);
   const [note, setNote] = useState([]);
+  const [quotes, setQuote] = useState([]);
 
   const onChangeProgress = (currentId, newProgress) => {
     const activeProgress = planner.map((item) => ({
@@ -55,6 +56,20 @@ const PlannerBody = () => {
           ...doc.data(),
         }));
         setPlanner(prevPlanner);
+      });
+
+    return () => unsubscribe();
+  }, []);
+  useEffect(() => {
+    const unsubscribe = firebase
+      .firestore()
+      .collection("quote")
+      .onSnapshot((snapshot) => {
+        const quotes = snapshot.docs.map((doc) => ({
+          author: doc.id,
+          ...doc.data(),
+        }));
+        setQuote(quotes);
       });
 
     return () => unsubscribe();
@@ -115,11 +130,11 @@ const PlannerBody = () => {
               onClick={(e) => {
                 refreshData(e);
               }}>
-              Refresh
+              RESET
             </button>
           </div>
           <div className="planner-quote">
-            <PlannerQuote />
+            <PlannerQuote quotes={quotes} />
           </div>
           <div className="planner-split">
             {/* -- Planner section */}

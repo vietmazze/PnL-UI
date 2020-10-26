@@ -8,6 +8,8 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  background-color: rgb(14, 13, 13);
+  opacity: 0.7;
 }
 
 .pomo {
@@ -38,6 +40,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    background-color: rgb(14, 13, 13);
+    opacity: 0.5;
   }
 
   .pomo {

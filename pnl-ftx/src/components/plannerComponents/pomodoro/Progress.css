@@ -17,7 +17,14 @@
   outline: none;
   cursor: pointer;
 }
-
+.dot:hover {
+  background-color: black;
+  outline: none;
+  border: none;
+  overflow: auto;
+  border-style: none;
+  border-color: transparent;
+}
 .completed {
   background-color: #f28458;
 }

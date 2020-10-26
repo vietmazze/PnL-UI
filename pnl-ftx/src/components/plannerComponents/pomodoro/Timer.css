@@ -19,11 +19,12 @@
 
 .counterType {
   font-size: 1rem;
-  color: green;
+  color: orange;
 }
 
 #time-left {
   font-family: "Open Sans", sans-serif;
+  color: white;
 }
 
 @media screen and (max-width: 480px) {
@@ -48,7 +49,7 @@
 
   .counterType {
     font-size: 10px;
-    color: black;
+    color: rgb(184, 177, 177);
     font-weight: bold;
   }
 
